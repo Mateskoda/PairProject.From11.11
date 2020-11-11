@@ -13,16 +13,21 @@ public class Reader {
 
     public static HashMap<String, Integer> read(String textName) throws FileNotFoundException {
         Set<Character> charsToIgnore= new HashSet<>();
-        charsToIgnore.add('.');
-        charsToIgnore.add('!');
+        for (int i = 33; i <64 ; i++) {
+
+            charsToIgnore.add((char)i);
+        }
         Scanner sc = new Scanner(new File(textName));
         
         for (int i = 0; sc.hasNext(); i++) {
             String word = sc.next();
-            System.out.println(word);
+//            System.out.println(word);
+
             word = word.substring(0).toLowerCase();
-            System.out.println(wordWithIgnores(word,charsToIgnore));
-            
+//            System.out.println(wordWithIgnores(word,charsToIgnore));
+
+            word = wordWithIgnores(word,charsToIgnore);
+
             wordsHashMap.putIfAbsent(word, 0);
             Integer put = wordsHashMap.get(word);
             put++;
@@ -33,7 +38,7 @@ public class Reader {
 
 
     public static String wordWithIgnores(String toPrint, Set<Character> ignore) {
-       String word ="";
+       String word = "";
     for(Character c : toPrint.toCharArray()) {
             if(! ignore.contains(c)) {
                c.toString();
