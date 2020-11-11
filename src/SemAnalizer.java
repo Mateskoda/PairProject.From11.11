@@ -13,6 +13,8 @@ public class SemAnalizer {
     public static void main(String[] args) throws FileNotFoundException {
         System.out.println(findMaxWords(Reader.read("borbala.txt")));
         System.out.println(findMaxWordsWithLetterCnt(Reader.read("borbala.txt"),1));
+        System.out.println(findMaxWords(Reader.read2Words("borbala.txt")));
+
     }
     //2.    Gyűjtsd ki egy szöveg 10 leggyakoribb 2-3-4 szavas szófordulatát!
     public static TreeMap<Integer, ArrayList<String>> findMaxWordsWithLetterCnt(HashMap<String, Integer> words,int letterCnt) {
