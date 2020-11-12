@@ -17,23 +17,43 @@ public class Reader {
 //        BullShitGenerator main = new BullShitGenerator();
 //        System.out.println(main.bullshitGenerator(text));
 //        System.out.println(readNames("borbala.txt"));
-        System.out.println(readHunFirstNames());
+        System.out.println(readHunFirstNames("borbala.txt"));
     }
-public static ArrayList<String> readHunFirstNames() throws FileNotFoundException {
-Scanner sc = new Scanner(new File("osszesffi.txt"));
+public static ArrayList<String> readHunFirstNames(String textName) throws FileNotFoundException {
+Scanner sc = new Scanner(new File("Nevek"));
 Scanner sc2 = new Scanner(new File("osszesnoi.txt"));
 ArrayList< String> names = new ArrayList<>();
     for (int i = 0; sc.hasNext() ; i++) {
         String name = sc.next();
         names.add(name);
-        System.out.println(name);
+//        System.out.println(name);
     }
 
     for (int i = 0; sc2.hasNextLine() ; i++) {
         names.add(sc2.nextLine());
         System.out.println(sc2.nextLine());
-    }return names;
     }
+
+        ArrayList<String> arrayListOfNames = new ArrayList<>();
+        Set<Character> charsToIgnore = new HashSet<>();
+        for (int i = 33; i < 64; i++) {
+
+            charsToIgnore.add((char) i);
+        }
+        Scanner sc3 = new Scanner(new File(textName));
+
+        for (int i = 0; sc3.hasNext(); i++) {
+            String word = sc3.next();
+            word = wordWithIgnores(word, charsToIgnore);
+            for (int j = 0; j < names.size() ; j++) {
+                if ( names.get(j).equals(word))
+                    if (!arrayListOfNames.contains(word))
+            arrayListOfNames.add(word);
+
+        }
+    }        return arrayListOfNames;
+
+}
 //    public static HashMap<String, Integer> readNames (String textName) throws FileNotFoundException {
 //      Set<Character> sentenceEndingCharsToIgnore = new HashSet<>();
 //      Set<Character> charsToIgnore = new HashSet<>();
