@@ -19,7 +19,7 @@ public class Reader {
 //        System.out.println(readNames("borbala.txt"));
         System.out.println(readHunFirstNames("borbala.txt"));
     }
-public static ArrayList<String> readHunFirstNames(String textName) throws FileNotFoundException {
+public static HashMap<String,Integer> readHunFirstNames(String textName) throws FileNotFoundException {
 Scanner sc = new Scanner(new File("Nevek"));
 Scanner sc2 = new Scanner(new File("osszesnoi.txt"));
 ArrayList< String> names = new ArrayList<>();
@@ -48,10 +48,13 @@ ArrayList< String> names = new ArrayList<>();
             for (int j = 0; j < names.size() ; j++) {
                 if ( names.get(j).equals(word))
                     if (!arrayListOfNames.contains(word))
-            arrayListOfNames.add(word);
+            arrayListOfNames.add(word);}}
+                HashMap<String,Integer> hashMap = new HashMap<>();
+                for (int k = 0; k <arrayListOfNames.size() ; k++) {
+                    hashMap.put(arrayListOfNames.get(k),1);
 
-        }
-    }        return arrayListOfNames;
+
+    }        return hashMap;
 
 }
 //    public static HashMap<String, Integer> readNames (String textName) throws FileNotFoundException {

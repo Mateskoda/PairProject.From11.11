@@ -27,7 +27,7 @@ public static TreeMap<Integer, ArrayList<String>>  filteredMoreThan15Words (Hash
      TreeMap<Integer, ArrayList<String>> maxWordsFilter = new TreeMap<>();
     for (int i = 4; i <20 ; i++) {
         for (Integer integer : findMaxWordsWithLetterCnt(words, i).keySet()) {
-            if (integer>15){
+            if (integer>30){
             for (int j = 0; j < findMaxWordsWithLetterCnt(words,i).get(integer).size(); j++) {
             String word =findMaxWordsWithLetterCnt(words,i).get(integer).get(j);
                 if (word.equals("hogy") || word.equals("volt") || word.equals("csak") || word.equals("aztán") || word.equals("mint") || word.equals("hanem") || word.equals("mert") ||word.equals("hogy")
