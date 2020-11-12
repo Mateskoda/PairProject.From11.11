@@ -3,60 +3,54 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Reader {
-    public static HashMap<String, Integer> wordsHashMap = new HashMap<>();
-    public static HashMap<String, Integer> wordsHashMap2Words = new HashMap<>();
-    public static HashMap<String, Integer> wordsHashMapOfNames = new HashMap<>();
+//    public static HashMap<String, Integer> wordsHashMap = new HashMap<>();
+//    public static HashMap<String, Integer> wordsHashMap2Words = new HashMap<>();
+//    public static HashMap<String, Integer> wordsHashMapOfNames = new HashMap<>();
 
     public static void main(String[] args) throws FileNotFoundException {
 //        read("borbala.txt");
 //        System.out.println(wordsHashMap);
 //        System.out.println(readToArray("borbala.txt"));
-        ArrayList<String> text = Reader.readToArray("borbala.txt");
+//        ArrayList<String> text = Reader.readToArray("borbala.txt");
 //        System.out.println(Reader.wordsHashMap.keySet().size());
 //        System.out.println(SemAnalizer.findMaxWords(Reader.wordsHashMap));
 //        BullShitGenerator main = new BullShitGenerator();
 //        System.out.println(main.bullshitGenerator(text));
 //        System.out.println(readNames("borbala.txt"));
-        System.out.println(readHunFirstNames("borbala.txt"));
-    }
-public static HashMap<String,Integer> readHunFirstNames(String textName) throws FileNotFoundException {
-Scanner sc = new Scanner(new File("Nevek"));
-Scanner sc2 = new Scanner(new File("osszesnoi.txt"));
-ArrayList< String> names = new ArrayList<>();
-    for (int i = 0; sc.hasNext() ; i++) {
-        String name = sc.next();
-        names.add(name);
-//        System.out.println(name);
+//        System.out.println(readHunFirstNames("borbala.txt"));
     }
 
-    for (int i = 0; sc2.hasNextLine() ; i++) {
-        names.add(sc2.nextLine());
-        System.out.println(sc2.nextLine());
-    }
-
+    public static HashMap<String, Integer> readHunFirstNames(String textName) throws FileNotFoundException {
+        Scanner sc = new Scanner(new File("Nevek"));
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; sc.hasNext(); i++) {
+            String name = sc.next();
+            names.add(name);
+        }
         ArrayList<String> arrayListOfNames = new ArrayList<>();
         Set<Character> charsToIgnore = new HashSet<>();
         for (int i = 33; i < 64; i++) {
-
             charsToIgnore.add((char) i);
         }
         Scanner sc3 = new Scanner(new File(textName));
-
         for (int i = 0; sc3.hasNext(); i++) {
             String word = sc3.next();
             word = wordWithIgnores(word, charsToIgnore);
-            for (int j = 0; j < names.size() ; j++) {
-                if ( names.get(j).equals(word))
+            for (int j = 0; j < names.size(); j++) {
+                if (names.get(j).equals(word))
                     if (!arrayListOfNames.contains(word))
-            arrayListOfNames.add(word);}}
-                HashMap<String,Integer> hashMap = new HashMap<>();
-                for (int k = 0; k <arrayListOfNames.size() ; k++) {
-                    hashMap.put(arrayListOfNames.get(k),1);
+                        arrayListOfNames.add(word);
+            }
+        }
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        for (int k = 0; k < arrayListOfNames.size(); k++) {
+            hashMap.put(arrayListOfNames.get(k), 1);
 
 
-    }        return hashMap;
+        }
+        return hashMap;
 
-}
+    }
 //    public static HashMap<String, Integer> readNames (String textName) throws FileNotFoundException {
 //      Set<Character> sentenceEndingCharsToIgnore = new HashSet<>();
 //      Set<Character> charsToIgnore = new HashSet<>();
@@ -158,6 +152,8 @@ ArrayList< String> names = new ArrayList<>();
     }
 
     public static HashMap<String, Integer> read2Words(String textName) throws FileNotFoundException {
+            HashMap<String, Integer> wordsHashMap2Words = new HashMap<>();
+
         Set<Character> charsToIgnore = new HashSet<>();
         for (int i = 33; i < 64; i++) {
 
@@ -177,7 +173,7 @@ ArrayList< String> names = new ArrayList<>();
 
             word = wordWithIgnores(word, charsToIgnore);
             word2 = wordWithIgnores(word2, charsToIgnore);
-            while (word2.equals("")){
+            while (word2.equals("")) {
                 word2 = sc.next();
                 word2 = word2.substring(0).toLowerCase();
                 word2 = wordWithIgnores(word2, charsToIgnore);
