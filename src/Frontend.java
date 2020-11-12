@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Frontend {
@@ -8,12 +7,11 @@ public class Frontend {
         System.out.println("Üdvözli a szemantikai elemző és halandzsagyártó alkalmazás!");
         String repeat = "i";
         while (!repeat.equals("n")) {
-            String service = "0";
             String textChoose = "0";
             String textSource = "0";
             String taskChoose = "0";
             System.out.print("Melyik szolgáltatásunk érdekli? A szemantikai elemzés (1) vagy a halandzsagyártás (2)? ");
-            service = s.next();
+            String service = s.next();
             if (!service.equals("1") && !service.equals("2")) {
                 System.out.print("A felkínált lehetőségek (1 vagy 2) közül szíveskedjen választani!");
             } else if (service.equals("1")) {
@@ -33,16 +31,20 @@ public class Frontend {
                 while (!taskChoose.equals("1") && !taskChoose.equals("2") && !taskChoose.equals("3") && !taskChoose.equals("4") && !taskChoose.equals("5") && !taskChoose.equals(
                         "6")) {
                     System.out.println("Az alábbi kimutatások elkészítésére vagyok képes:");
-                    System.out.println("(1) A szövegben leggyakrabban előforduló 10 - Ön által meghatározott számú betűből álló - szó.");
-                    System.out.println("(2) 10, a szövegben leggyakrabban előforduló KÉTszavas szófordulat.");
-                    System.out.println("(3) 10, a szövegben leggyakrabban előforduló HÁROMszavas szófordulat.");
-                    System.out.println("(4) 10, a szövegben leggyakrabban előforduló NÉGYszavas szófordulat.");
-                    System.out.println("(5) A szövegben leggyakrabban előforduló 10 név (minden tulajdonnevet és keresztnevet tekintve).");
-                    System.out.println("(6) A szövegben leggyakrabban előforduló 10 keresztnév.");
+                    System.out.println("(1) 10 (vagy kevesebb), a szövegben leggyakrabban előforduló szó.");
+                    System.out.println("(2) 10 (vagy kevesebb), a szövegben leggyakrabban előforduló - Ön által meghatározott számú betűből álló - szó.");
+                    System.out.println("(3) 10 (vagy kevesebb), a szövegben leggyakrabban előforduló KÉTszavas szófordulat.");
+                    System.out.println("(4) 10 (vagy kevesebb), a szövegben leggyakrabban előforduló HÁROMszavas szófordulat.");
+                    System.out.println("(5) 10 (vagy kevesebb), a szövegben leggyakrabban előforduló NÉGYszavas szófordulat.");
+                    System.out.println("(6) A szövegben leggyakrabban előforduló 10 név (minden tulajdonnevet és keresztnevet tekintve).");
+                    System.out.println("(7) A szövegben leggyakrabban előforduló 10 keresztnév.");
                     System.out.print("Melyik kimutatásra kíváncsi? ");
                     taskChoose = s.next();
                     switch (taskChoose) {
                         case "1":
+                            System.out.println(SemAnalizer.findMaxWords(Reader.read(textSource)));
+                            break;
+                        case "2":
                             String numberOfLetters = "0";
                             while (Integer.parseInt(numberOfLetters) > 20  || Integer.parseInt(numberOfLetters) < 1) {
                                 System.out.print("Hány betűből álló szavakat keressek (1-20)? ");
@@ -54,11 +56,11 @@ public class Frontend {
                                 }
                             }
                             break;
-                        case "2":
                         case "3":
                         case "4":
                         case "5":
                         case "6":
+                        case "7":
                         default:
                             System.out.println("A felkínált lehetőségek (1, 2, 3, 4, 5 vagy 6) közül szíveskedjen választani!");
                     }
