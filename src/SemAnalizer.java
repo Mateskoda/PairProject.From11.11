@@ -9,14 +9,19 @@ import java.util.TreeMap;
 public class SemAnalizer {
     static TreeMap<Integer, ArrayList<String>> maxWords = new TreeMap<>();
     static TreeMap<Integer, ArrayList<String>> maxWordsWithLetterCnt = new TreeMap<>();
+    static TreeMap<Integer, ArrayList<String>> maxWords2Words = new TreeMap<>();
 
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println(findMaxWords(Reader.read("borbala.txt")));
-        System.out.println(findMaxWordsWithLetterCnt(Reader.read("borbala.txt"),1));
+//        System.out.println(findMaxWords(Reader.read("borbala.txt")));
+//        System.out.println(findMaxWordsWithLetterCnt(Reader.read("borbala.txt"),1));
         System.out.println(findMaxWords(Reader.read2Words("borbala.txt")));
 
     }
-    //2.    Gyűjtsd ki egy szöveg 10 leggyakoribb 2-3-4 szavas szófordulatát!
+//    Gyűjtsd ki egy szöveg 10 leggyakoribb nevét!
+
+
+
+    //2.    Gyűjtsd ki egy szöveg 10 leggyakoribb 2-3-4  szófordulatát!
     public static TreeMap<Integer, ArrayList<String>> findMaxWordsWithLetterCnt(HashMap<String, Integer> words,int letterCnt) {
         int maxCnt = Integer.MAX_VALUE;
         for (int i = 0; i < 10; ) {
@@ -49,7 +54,25 @@ public class SemAnalizer {
         return max;
     }
 
+    public static TreeMap<Integer, ArrayList<String>> findMaxWordsOf2Words(HashMap<String, Integer> words) {
+        int maxCnt = Integer.MAX_VALUE;
+        for (int i = 0; i < 10; ) {
+            Integer actuelMaxCnt = findMaxWordsUnderMaxCnt(words, maxCnt);
+            maxWords2Words.putIfAbsent(actuelMaxCnt, new ArrayList<>());
+            for (String s : words.keySet()) {
+                if (words.get(s).equals(actuelMaxCnt)) {
+                    maxWords2Words.get(actuelMaxCnt).add(s);
+                    i++;
+                }
+            }
+            maxCnt = actuelMaxCnt;
+
+        }
+        return maxWords;
+    }
+
     //   1. Gyűjtsd ki egy szöveg 10 leggyakoribb szavát!
+
     public static TreeMap<Integer, ArrayList<String>> findMaxWords(HashMap<String, Integer> words) {
         int maxCnt = Integer.MAX_VALUE;
         for (int i = 0; i < 10; ) {
