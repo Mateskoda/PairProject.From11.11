@@ -4,7 +4,6 @@ import java.util.*;
 public class BullShitGenerator {
     char newLine = (char) 10;
 
-
     public static void main(String[] args) throws FileNotFoundException {
         ArrayList<String> text = Reader.readToArray("borbala.txt");
 //        System.out.println(Reader.wordsHashMap.keySet().size());
@@ -162,7 +161,7 @@ public class BullShitGenerator {
     }
 
     public boolean wordNeedsComma(String word) {
-        if (word.equals("tehát") || word.equals("addig") || word.equals("amint") || word.equals("amik") || word.equals("mikor") || word.equals("melyet") || word.equals("minthogy") || word.equals("aztán") || word.equals(
+        if (word.equals("melyen") || word.equals("akik") || word.equals("tehát") || word.equals("addig") || word.equals("amint") || word.equals("amik") || word.equals("mikor") || word.equals("melyet") || word.equals("minthogy") || word.equals("aztán") || word.equals(
                 "mintha") || word.equals(
                 "amely") || word.equals(
                 "akkor") ||
