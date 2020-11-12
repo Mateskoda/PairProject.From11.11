@@ -6,12 +6,12 @@ public class Frontend {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner s = new Scanner(System.in);
         System.out.println("Üdvözli a szemantikai elemző és halandzsagyártó alkalmazás!");
-        String service = "0";
-        String textChoose = "0";
-        String textSource = "0";
-        String taskChoose = "0";
         String repeat = "i";
         while (!repeat.equals("n")) {
+            String service = "0";
+            String textChoose = "0";
+            String textSource = "0";
+            String taskChoose = "0";
             System.out.print("Melyik szolgáltatásunk érdekli? A szemantikai elemzés (1) vagy a halandzsagyártás (2)? ");
             service = s.next();
             if (!service.equals("1") && !service.equals("2")) {
@@ -43,6 +43,17 @@ public class Frontend {
                     taskChoose = s.next();
                     switch (taskChoose) {
                         case "1":
+                            String numberOfLetters = "0";
+                            while (Integer.parseInt(numberOfLetters) > 20  || Integer.parseInt(numberOfLetters) < 1) {
+                                System.out.print("Hány betűből álló szavakat keressek (1-20)? ");
+                                numberOfLetters = s.next();
+                                if (Integer.parseInt(numberOfLetters) > 20 || Integer.parseInt(numberOfLetters) < 1) {
+                                    System.out.println("0-nál nagyobb, 21-nél kisebb számot szíveskedjen megadni!");
+                                } else {
+                                    System.out.println(SemAnalizer.findMaxWordsWithLetterCnt(Reader.read(textSource), Integer.parseInt(numberOfLetters)));
+                                }
+                            }
+                            break;
                         case "2":
                         case "3":
                         case "4":
