@@ -23,7 +23,7 @@ public static ArrayList<String> readHunFirstNames() throws FileNotFoundException
 Scanner sc = new Scanner(new File("osszesffi.txt"));
 Scanner sc2 = new Scanner(new File("osszesnoi.txt"));
 ArrayList< String> names = new ArrayList<>();
-    for (int i = 0; i<0 ; i++) {
+    for (int i = 0; sc.hasNext() ; i++) {
         String name = sc.next();
         names.add(name);
         System.out.println(name);
@@ -106,6 +106,7 @@ ArrayList< String> names = new ArrayList<>();
     }
 
     public static HashMap<String, Integer> read(String textName) throws FileNotFoundException {
+        HashMap<String, Integer> wordsHashMap = new HashMap<>();
         Set<Character> charsToIgnore = new HashSet<>();
         for (int i = 33; i < 64; i++) {
 
